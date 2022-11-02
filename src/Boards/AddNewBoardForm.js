@@ -16,8 +16,12 @@ function AddNewBoardForm(props) {
 
 
     const createNewBoard = () => {
-        setDoc(doc(collection(db,"boards")),{user:userId,boardName:name})
-        props.func("Success")
+        const ref = doc(collection(db,"boards"))
+        setDoc(ref,{user:userId,boardName:name}).then((res)=>{
+            props.func(ref.id)
+        }
+        )
+        
     }
 
 
